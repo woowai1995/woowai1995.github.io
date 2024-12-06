@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小六壬卜卦</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 首页 -->
+        <div id="homePage" class="page active">
+            <header class="app-header">
+                <div class="logo-container">
+                    <img src="https://heqifiles.oss-cn-hangzhou.aliyuncs.com/2024120617500075.png" alt="小六壬" class="logo">
+                    <h1>小六壬卜卦</h1>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <div class="current-time">
+                    <div class="date-display">
+                        <span id="currentDate">loading...</span>
+                        <span id="currentLunarDate">loading...</span>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">loading...</span>
+                        <span id="currentHourBranch">loading...</span>
+                    </div>
+                    <button id="refreshTime" class="btn-secondary">
+                        <i class="icon-refresh"></i>刷新时间
+                    </button>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="autoDivine" class="btn-primary">自动起卦</button>
+                    <button id="manualDivine" class="btn-primary">手动起卦</button>
+                </div>
+
+                <div class="intro-text">
+                    <h2 style="text-align: center;margin-top: 80px;">小六壬简介</h2>
+                    <p>小六壬源于中国古代术数文化，是一种简便易学的占卜方法。它以农历时间为基础，通过特定的演算法则，推演吉凶祸福。小六壬占卜主要用于日常事务的趋吉避凶，具有操作简单、效验快速的特点。</p>
+                    <div style="text-align: center;margin-top:120px;">作者：吴伟_Leo</div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 手动起卦页面 -->
+        <div id="manualPage" class="page">
+            <header class="page-header">
+                <button id="backToHome" class="btn-back">
+                    <i class="icon-back"></i>返回
+                </button>
+                <h2>手动选择时间</h2>
+            </header>
+
+            <main class="main-content">
+                <div class="lunar-calendar">
+                    <div class="calendar-header">
+                        <button id="prevMonth" class="calendar-nav">&lt;</button>
+                        <span id="currentMonth">2023年正月</span>
+                        <button id="nextMonth" class="calendar-nav">&gt;</button>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
+                </div>
+
+                <div class="hour-select">
+                    <label for="hourSelect">选择时辰：</label>
+                    <select id="hourSelect" class="styled-select">
+                        <option value="1">子时 (23:00-01:00)</option>
+                        <option value="2">丑时 (01:00-03:00)</option>
+                        <option value="3">寅时 (03:00-05:00)</option>
+                        <option value="4">卯时 (05:00-07:00)</option>
+                        <option value="5">辰时 (07:00-09:00)</option>
+                        <option value="6">巳时 (09:00-11:00)</option>
+                        <option value="7">午时 (11:00-13:00)</option>
+                        <option value="8">未时 (13:00-15:00)</option>
+                        <option value="9">申时 (15:00-17:00)</option>
+                        <option value="10">酉时 (17:00-19:00)</option>
+                        <option value="11">戌时 (19:00-21:00)</option>
+                        <option value="12">亥时 (21:00-23:00)</option>
+                    </select>
+                </div>
+
+                <button id="confirmTime" class="btn-primary">确定起卦</button>
+            </main>
+        </div>
+
+        <!-- 起卦结果页面 -->
+        <div id="resultPage" class="page">
+            <header class="page-header">
+                <button id="backToHomeFromResult" class="btn-back">
+                    <i class="icon-back"></i>返回
+                </button>
+                <h2>卦象解读</h2>
+            </header>
+
+            <main class="main-content">
+                <div class="divination-animation" id="divinationAnimation">
+                    <div class="card-stack"></div>
+                    <div class="selected-card"></div>
+                </div>
+
+                <div class="result-content">
+                    <div class="hexagram-header">
+                        <h2 id="hexagramName" class="hexagram-title"></h2>
+                    </div>
+
+                    <div class="interpretation-content">
+                        <div class="interpretation-section">
+                            <h3>总体评价</h3>
+                            <p id="general"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>神煞含义</h3>
+                            <p id="spirit_meaning"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>天气预测</h3>
+                            <p id="weather"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>事业运势</h3>
+                            <p id="career"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>爱情运势</h3>
+                            <p id="love"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>财运状况</h3>
+                            <p id="wealth"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>健康预警</h3>
+                            <p id="health"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>失物寻找</h3>
+                            <p id="lost_items"></p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h3>其他问题</h3>
+                            <p id="others"></p>
+                        </div>
+                    </div>
+
+                    <div class="result-actions">
+                        <button id="newDivination" class="btn-primary">重新起卦</button>
+                        <button id="shareResult" class="btn-secondary">分享结果</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 分享弹窗 -->
+        <div id="shareModal" class="modal">
+            <div class="modal-content">
+                <h3>分享到</h3>
+                <div class="share-options">
+                    <button class="share-btn" data-platform="wechat">
+                        <i class="icon-wechat"></i>微信
+                    </button>
+                    <button class="share-btn" data-platform="weibo">
+                        <i class="icon-weibo"></i>微博
+                    </button>
+                </div>
+                <button class="modal-close">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 农历转换库 -->
+    <script src="lunar.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
