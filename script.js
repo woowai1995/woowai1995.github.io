@@ -12,7 +12,9 @@ const divinationManager = {
             general: '属吉卦，凡事都可以得到安康，但是此为静卦，宜静不宜动',
             spirit_meaning: '青龙主吉祥、喜事、财运、正直',
             lost_items: '失物在东方，衣裳掉在草丛中，禽畜迷路林中睡，不过多天送回来，小孩走路得安稳，也有贵人保安康',
-            others: '问运势：目前运势还不错，有稳定成长的情况，但不宜躁进\n问神鬼：大安为解灾之神，鬼神之事问题不大，若是小孩为自身惊吓所致，���冲犯东方之煞神或犯土煞\n问行人：人平安，但目前不愿与自身连络'
+            fortune: '目前运势还不错，有稳定成长的情况，但不宜躁进',
+            ghost: '大安为解灾之神，鬼神之事问题不大，若是小孩为自身惊吓所致，冲犯东方之煞神或犯土煞',
+            traveler: '人平安，但目前不愿与自身连络'
         },
         { 
             name: '留连', 
@@ -25,20 +27,24 @@ const divinationManager = {
             general: '属凶卦，代表凡事阻碍、迟滞，此卦更不宜有过大动作，凡事宜守',
             spirit_meaning: '玄武主盗贼、欺骗、暧昧、小人',
             lost_items: '失物寻北方，衣物禽畜在水边，鸡儿鸭子水中睡，牛马已经绳子牵，急需焚香来禀告，免得六公再要钱，女人保藏此失物，她见便是报君子',
-            others: '问运势：目前运势低迷，心情不开朗，凡事受阻\n问神鬼：小孩子主要被过路游魂所煞到，大人为冲犯女性鬼神\n问行人：人平安，但目前仍流连忘返'
+            fortune: '目前运势低迷，心情不开朗，凡事受阻',
+            ghost: '小孩子主要被过路游魂所煞到，大人为冲犯女性鬼神',
+            traveler: '人平安，但目前仍流连忘返'
         },
         { 
             name: '速喜', 
             spirit: '朱雀',
             weather: '霓虹见，艳阳高照在人间',
-            career: '作利��但须意文件上的疏失',
+            career: '作利但件上的疏失',
             love: '若是刚开始的感情，则为热恋。若是已经持续一段时间，则为口舌',
             wealth: '求财可得，但有先破财而后得财或者先得财后破财之兆，若得到钱财就必须赶快脱身',
             health: '心脏、血液循环有问题或者头部、脑压的问题，但是问题不大',
             general: '为吉卦，代表凡事皆有喜讯，而且很快就会到来',
             spirit_meaning: '朱雀主喜庆、文书信息、口舌是非',
             lost_items: '失物在眼前，劝君望过火炉边，不见请君南方找，一定归你到身边，漏财瘟神遮闭眼，留得久看发疯癫',
-            others: '问运势：目前运势渐开，要积极的行动就可以如愿\n问神鬼：小孩子被动物吓到或者被女性阴神冲犯，大人为冲犯男性鬼神\n问行人：人已经快到了'
+            fortune: '目前运势渐开，要积极的行动就可以如愿',
+            ghost: '小孩子被动物吓到或者被女性阴神冲犯，大人为冲犯男性鬼神',
+            traveler: '人已经快到了'
         },
         { 
             name: '赤口', 
@@ -47,11 +53,13 @@ const divinationManager = {
             career: '若为武职或者粗重行业则顺，若为文职则不顺',
             love: '感情纷争多，或女方身体有疾病',
             wealth: '大起大落之财，求财不易',
-            health: '胸口、支气管，或者有血光之灾，赤也有流疾病意义',
+            health: '胸口、支气管，或者有血光之灾，赤也有��意义',
             general: '为凶卦，代表运势多舛，而且诸多纷争亦有口舌之祸',
             spirit_meaning: '白虎主凶险、灾祸、其性直而无私',
             lost_items: '失物西方寻，定是有人来收藏，寻找之时碰见人，劝君免问小心防，为善殉寻告你知，为恶咒骂无人讲',
-            others: '问运势：目前运势不明，若有大计划就要赶快实施、不要拖延，则可成功。若卜小事则不成\n问神鬼：犯到择日凶神，或者被人索害\n问行人：所问之人目前有困难或者有事情纠缠'
+            fortune: '目前运势不明，若有大计划就要赶快实施、不要拖延，则可成功。若卜小事则不成',
+            ghost: '犯到择日凶神，或者被人索害',
+            traveler: '所问之人目前有困难或者有事情纠缠'
         },
         { 
             name: '小吉', 
@@ -63,8 +71,10 @@ const divinationManager = {
             health: '肝胆之疾病和消化系统，但是问题不大',
             general: '为吉卦，代表凡事皆吉，但是不如大安的安稳也不如速喜快速，而是介于两者中间',
             spirit_meaning: '螣蛇主和好、合作、友谊、成功',
-            lost_items: '失物东，屋柴草遮着眼牛马已干草睡��衣物次天可寻回，小孩迷路星石救，护送回家在次天',
-            others: '问运势：目前运势不错，保持目前状况就会越来越好\n问神鬼：小孩子被动物吓到或者被女性阴神冲犯，大人为冲犯家中祖先\n问行人：人已经快到了'
+            lost_items: '失物东屋柴草遮眼牛马���干草睡衣物天可回，小孩路星石救，护送回家在次天',
+            fortune: '目前运势不错，保持目前状况就会越来越好',
+            ghost: '小孩子被动物吓到或者被女性阴神冲犯，大人为冲犯家中祖先',
+            traveler: '人已经快到了'
         },
         { 
             name: '空亡', 
@@ -77,7 +87,9 @@ const divinationManager = {
             general: '为凶卦，代表凡事秽暗不明，内心不安，运途起伏',
             spirit_meaning: '勾陈主官司、诉讼、勾连不清',
             lost_items: '失物已失踪，六畜将死泥土中，或在贪心人手中，寻紧急时见尸踪，衣物失去已落空，劝君安心免头痛',
-            others: '问运势：目前运势不佳，自身拿不定主意，无所适从，可多听取他人之意见，切莫随意就做判断\n问神鬼：家中阳宅或者阴宅出题，导冲犯\n问行人人在途中到困难或��厄而难到'
+            fortune: '目前运势不佳，自身拿不定主意，无所适从，可多听取他人之意见，切莫随意就做判断',
+            ghost: '家中阳宅或者阴宅出题，导冲犯',
+            traveler: '人在途中到困难或厄而难'
         }
     ],
 
@@ -113,8 +125,8 @@ const divinationManager = {
         // 据最终位置取卦象
         const hexagramName = hexagramOrder[position];
         
-        // 调试信息
-        console.log(`月份从大安数${month}个停在：${hexagramOrder[startDayPosition]}`);
+        // 调��信息
+        console.log(`份从大安数${month}个停在：${hexagramOrder[startDayPosition]}`);
         console.log(`日期从${hexagramOrder[startDayPosition]}数${day}个停在：${hexagramOrder[startHourPosition]}`);
         console.log(`时辰从${hexagramOrder[startHourPosition]}数${hourNum}个停在：${hexagramName}`);
         
@@ -164,6 +176,14 @@ const divinationManager = {
                 elements.hexagramName.textContent = `${hexagram.name}（${hexagram.spirit}）`;
             }
 
+            // 显示起卦时间
+            if (elements.divinationTime) {
+                const now = new Date();
+                const lunar = Lunar.fromDate(now);
+                const timeStr = `起卦时间：${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 农历${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${timeManager.getHourBranch(now)}时`;
+                elements.divinationTime.textContent = timeStr;
+            }
+
             // 显示总体评价
             if (elements.general) {
                 elements.general.textContent = hexagram.general;
@@ -194,7 +214,7 @@ const divinationManager = {
                 elements.wealth.textContent = hexagram.wealth;
             }
 
-            // 显��健康解释
+            // 显示健康解释
             if (elements.health) {
                 elements.health.textContent = hexagram.health;
             }
@@ -204,9 +224,19 @@ const divinationManager = {
                 elements.lost_items.textContent = hexagram.lost_items;
             }
 
-            // 显示其他问题
-            if (elements.others) {
-                elements.others.textContent = hexagram.others;
+            // 显示问运势
+            if (elements.fortune) {
+                elements.fortune.textContent = hexagram.fortune;
+            }
+
+            // 显示问神鬼
+            if (elements.ghost) {
+                elements.ghost.textContent = hexagram.ghost;
+            }
+
+            // 显示问行人
+            if (elements.traveler) {
+                elements.traveler.textContent = hexagram.traveler;
             }
         } catch (error) {
             console.error('显示结果时出错:', error);
@@ -219,7 +249,7 @@ const animationManager = {
         elements.divinationAnimation.style.display = 'none';
     },
 
-    // 播放动画
+    // 播���动画
     async playDivinationAnimation() {
         return new Promise((resolve) => {
             elements.divinationAnimation.style.display = 'block';
@@ -236,8 +266,8 @@ const animationManager = {
 // 检查lunar-javascript库是否正确加载
 function checkLunarLibrary() {
     if (typeof Lunar === 'undefined') {
-        console.error('lunar-javascript库未找到，请确保lunar.js文存在');
-        alert('日期转换组件加载失败请确保lunar.js文件存在');
+        console.error('lunar-javascript库未找到，请确保lunar.js文件存在');
+        alert('日期转换组件加载失败，请确保lunar.js文件存在');
         return false;
     }
     
@@ -258,7 +288,6 @@ function checkLunarLibrary() {
 const elements = {
     // 页面元素
     homePage: document.getElementById('homePage'),
-    manualPage: document.getElementById('manualPage'),
     resultPage: document.getElementById('resultPage'),
     
     // 时间显示元素
@@ -269,19 +298,9 @@ const elements = {
     refreshTime: document.getElementById('refreshTime'),
     
     // 按钮元素
-    autoDivine: document.getElementById('autoDivine'),
-    manualDivine: document.getElementById('manualDivine'),
-    confirmTime: document.getElementById('confirmTime'),
-    backToHome: document.getElementById('backToHome'),
     backToHomeFromResult: document.getElementById('backToHomeFromResult'),
     newDivination: document.getElementById('newDivination'),
-    
-    // 日历元素
-    calendarGrid: document.getElementById('calendarGrid'),
-    prevMonth: document.getElementById('prevMonth'),
-    nextMonth: document.getElementById('nextMonth'),
-    currentMonth: document.getElementById('currentMonth'),
-    hourSelect: document.getElementById('hourSelect'),
+    shareResult: document.getElementById('shareResult'),
     
     // 结果展示元素
     divinationAnimation: document.getElementById('divinationAnimation'),
@@ -294,7 +313,10 @@ const elements = {
     wealth: document.getElementById('wealth'),
     health: document.getElementById('health'),
     lost_items: document.getElementById('lost_items'),
-    others: document.getElementById('others')
+    fortune: document.getElementById('fortune'),
+    ghost: document.getElementById('ghost'),
+    traveler: document.getElementById('traveler'),
+    divinationTime: document.getElementById('divinationTime'),
 };
 
 // 时间处理
@@ -313,7 +335,7 @@ const timeManager = {
                 hour: this.getHourBranch(now)
             };
         } catch (error) {
-            console.error('农历转换失败:', error);
+            console.error('农历换失败:', error);
             alert('日期转换失败，请刷新页面重试');
             return null;
         }
@@ -360,14 +382,6 @@ const pageManager = {
     init() {
         this.showPage('homePage');
         
-        elements.manualDivine.addEventListener('click', () => {
-            this.showPage('manualPage');
-        });
-        
-        elements.backToHome.addEventListener('click', () => {
-            this.showPage('homePage');
-        });
-        
         elements.backToHomeFromResult.addEventListener('click', () => {
             this.showPage('homePage');
         });
@@ -375,176 +389,6 @@ const pageManager = {
         elements.newDivination.addEventListener('click', () => {
             this.showPage('homePage');
         });
-    }
-};
-
-// 农历历
-const lunarCalendar = {
-    currentLunar: null,
-    selectedDate: null,
-    
-    init() {
-        if (!checkLunarLibrary()) return;
-        
-        try {
-            this.currentLunar = Lunar.fromDate(new Date());
-            this.renderCalendar();
-            this.bindEvents();
-        } catch (error) {
-            console.error('农历日历初始化失败:', error);
-            alert('日历初始化失败，请刷新页面重试');
-        }
-    },
-    
-    renderCalendar() {
-        if (!this.currentLunar) return;
-
-        try {
-            // 获取当前农历月的信息
-            const year = this.currentLunar.getYear();
-            const month = this.currentLunar.getMonth();
-            
-            // 获取当前月对象
-            const currentMonth = LunarYear.fromYear(year).getMonths()[month - 1];
-            const currentMonthDays = currentMonth.getDayCount();
-            
-            // 更新月份显示
-            const monthText = this.currentLunar.getMonthInChinese();
-            elements.currentMonth.textContent = `${this.currentLunar.getYearInChinese()}年 ${monthText}月`;
-
-            // 清空日历网格
-            elements.calendarGrid.innerHTML = '';
-
-            // 填充日历网格
-            for (let day = 1; day <= currentMonthDays; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.classList.add('calendar-day');
-                dayElement.textContent = day;
-                dayElement.dataset.day = day;
-
-                // 如果是当前选中的日期，添加选中样式
-                if (this.selectedDay === day) {
-                    dayElement.classList.add('selected');
-                }
-
-                elements.calendarGrid.appendChild(dayElement);
-            }
-
-            // 如果需要，添加空白格子以保持网格对齐
-            const totalCells = 42; // 6行7列
-            const emptyCells = totalCells - currentMonthDays;
-            for (let i = 0; i < emptyCells; i++) {
-                const emptyElement = document.createElement('div');
-                emptyElement.classList.add('calendar-day', 'empty');
-                elements.calendarGrid.appendChild(emptyElement);
-            }
-
-            // 更新时间显示（使用timeManager）
-            timeManager.updateTimeDisplay();
-            
-            console.log(`当前农历: ${year}年${month}月, 该月天数: ${currentMonthDays}`);
-        } catch (error) {
-            console.error('渲染日历失败:', error);
-            console.log('当前农历对象:', this.currentLunar);
-        }
-    },
-    
-    getMonthInChinese(month) {
-        const monthNames = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'];
-        return monthNames[month - 1];
-    },
-    
-    getDaysInMonth(year, month) {
-        // 农历月份天数查表
-        const monthDays = {
-            1: 29,
-            2: 30,
-            3: 29,
-            4: 30,
-            5: 29,
-            6: 30,
-            7: 29,
-            8: 30,
-            9: 29,
-            10: 30,
-            11: 29,
-            12: 30
-        };
-        return monthDays[month] || 30;
-    },
-    
-    bindEvents() {
-        elements.prevMonth.addEventListener('click', () => {
-            try {
-                // 获取当前农历年月
-                const currentYear = this.currentLunar.getYear();
-                const currentMonth = this.currentLunar.getMonth();
-                
-                // 计算上个月的年月
-                let prevYear = currentYear;
-                let prevMonth = currentMonth - 1;
-                if (prevMonth < 1) {
-                    prevYear--;
-                    prevMonth = 12;
-                }
-                
-                // 使用农历API创建新日期
-                this.currentLunar = Lunar.fromYmd(prevYear, prevMonth, 1);
-                this.renderCalendar();
-                
-                console.log(`切换到农历 ${prevYear}年${prevMonth}月`);
-            } catch (error) {
-                console.error('月份切换失败:', error);
-            }
-        });
-        
-        elements.nextMonth.addEventListener('click', () => {
-            try {
-                // 获取当前农历年月
-                const currentYear = this.currentLunar.getYear();
-                const currentMonth = this.currentLunar.getMonth();
-                
-                // 计算下个月的年月
-                let nextYear = currentYear;
-                let nextMonth = currentMonth + 1;
-                if (nextMonth > 12) {
-                    nextYear++;
-                    nextMonth = 1;
-                }
-                
-                // 使用农历API创建新日期
-                this.currentLunar = Lunar.fromYmd(nextYear, nextMonth, 1);
-                this.renderCalendar();
-                
-                console.log(`切换到农历 ${nextYear}年${nextMonth}月`);
-            } catch (error) {
-                console.error('月份切换失败:', error);
-            }
-        });
-        
-        elements.calendarGrid.addEventListener('click', (e) => {
-            if (e.target.classList.contains('calendar-day') && !e.target.classList.contains('empty')) {
-                const day = parseInt(e.target.dataset.day);
-                this.selectDate(day);
-            }
-        });
-    },
-    
-    selectDate(day) {
-        this.selectedDate = {
-            year: this.currentLunar.getYear(),
-            month: this.currentLunar.getMonth(),
-            day: day
-        };
-        
-        document.querySelectorAll('.calendar-day').forEach(el => {
-            el.classList.remove('selected');
-        });
-        
-        const selectedDayElement = document.querySelector(`[data-day="${day}"]`);
-        if (selectedDayElement) {
-            selectedDayElement.classList.add('selected');
-        }
     }
 };
 
@@ -556,17 +400,14 @@ function initApp() {
     timeManager.updateTimeDisplay();
     setInterval(() => timeManager.updateTimeDisplay(), 60000);
     
-    // 初始化农历日历
-    lunarCalendar.init();
-    
-    // 初始化页面管理
+    // 初始化页面理
     pageManager.init();
     
-    // ���始化动画管理器
+    // 初始化动画管理器
     animationManager.init();
     
     // 绑定自动起卦事件
-    elements.autoDivine.addEventListener('click', async () => {
+    document.querySelector('.auto-button').addEventListener('click', async () => {
         const dateTime = timeManager.getCurrentDateTime();
         if (!dateTime) return;
         
@@ -578,32 +419,88 @@ function initApp() {
             dateTime.lunar.getDay(),
             hourNum
         );
-        pageManager.showPage('resultPage');
+        if (result) {
+            pageManager.showPage('resultPage');
+        }
     });
     
-    // 绑定手动起卦事件
-    elements.confirmTime.addEventListener('click', async () => {
-        if (!lunarCalendar.selectedDate) {
-            alert('请选择日期');
-            return;
-        }
-        
-        if (!elements.hourSelect.value) {
-            alert('请选择时辰');
-            return;
-        }
-        
-        const result = await divinationManager.performDivination(
-            lunarCalendar.selectedDate.month,
-            lunarCalendar.selectedDate.day,
-            elements.hourSelect.value
-        );
-        pageManager.showPage('resultPage');
-    });
-    
-    // 绑定刷新时间件
+    // 绑定刷新时间按钮事件
     elements.refreshTime.addEventListener('click', () => {
         timeManager.updateTimeDisplay();
+    });
+    
+    // 绑定分享按钮事件
+    elements.shareResult.addEventListener('click', async () => {
+        try {
+            // 获取结果内容区域
+            const resultContent = document.querySelector('.result-content');
+            
+            // 创建临时容器用于截图
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.style.background = '#fff';
+            tempContainer.style.padding = '20px';
+            tempContainer.style.width = '100%';
+            tempContainer.style.maxWidth = '600px';
+            
+            // 克隆结果内容
+            const clone = resultContent.cloneNode(true);
+            // 移除分享按钮区域
+            const actions = clone.querySelector('.result-actions');
+            if (actions) {
+                actions.remove();
+            }
+            // 确保署名显示正常
+            const signature = clone.querySelector('.author-signature');
+            if (signature) {
+                signature.style.opacity = '1';
+                signature.style.transform = 'none';
+                signature.style.animation = 'none';
+            }
+            tempContainer.appendChild(clone);
+            document.body.appendChild(tempContainer);
+            
+            // 生成图片
+            const canvas = await html2canvas(tempContainer, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#fff',
+                logging: false,
+                onclone: function(clonedDoc) {
+                    // 确保克隆的内容中所有文字都是不透明的
+                    const sections = clonedDoc.querySelectorAll('.interpretation-section');
+                    sections.forEach(section => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'none';
+                        section.style.animation = 'none';
+                    });
+                    // 确保署名也是不透明的
+                    const signature = clonedDoc.querySelector('.author-signature');
+                    if (signature) {
+                        signature.style.opacity = '1';
+                        signature.style.transform = 'none';
+                        signature.style.animation = 'none';
+                    }
+                }
+            });
+            
+            // 移除临时容器
+            document.body.removeChild(tempContainer);
+            
+            // 转换为图片并下载
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `小六壬卦象_${new Date().getTime()}.png`;
+            link.href = image;
+            link.click();
+            
+            // 提示用户
+            alert('卦象结果已保存为图片，请查看下载内容。');
+        } catch (error) {
+            console.error('生成分享图片失败:', error);
+            alert('生成分享图片失败，请重试');
+        }
     });
 }
 
@@ -613,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.innerHTML = `
             <div style="text-align: center; padding: 20px;">
                 <h1>载失败</h1>
-                <p>日期转换组件加载失败，请确lunar.js文件存在并且可以正问。</p>
+                <p>日期转换组件加载失败，请确lunar.js文件存在并且可正问。</p>
                 <button onclick="location.reload()">重新加载</button>
             </div>
         `;
