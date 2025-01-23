@@ -17,7 +17,7 @@ const divinationManager = {
             traveler: '人平安，但目前不愿与自身连络'
         },
         { 
-            name: '留连', 
+            name: '流连', 
             spirit: '玄武',
             weather: '雨绵绵，旱苗洗雨在禾田',
             career: '被上司盯或者被人扯后腿，小人之卦',
