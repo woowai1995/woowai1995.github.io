@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吴伟_Leo的个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .background {
+            background-image: url(./assets/blog/background.jpg);
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(235, 235, 235);
+        }
+
+        .profile-url {
+            color: rgb(210, 210, 210);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .profile-description {
+            display: flex;
+            align-items: center;
+            color: rgb(210, 210, 210);
+            font-size: 14px;
+        }
+
+        .profile-description1 {
+            display: flex;
+            align-items: center;
+            color: rgb(245, 245, 245);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .profile-description1 img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            margin-top: 10px
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .section-title2 {
+            font-size: 8px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-media img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .work-item {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            max-width: 320px;
+            height: 60px;
+        }
+
+        .work-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .work-item2 {
+            background: white;
+            border-radius: 8px;
+            padding: 10px 5px;
+            align-items: center;
+            text-align: center;
+            max-width: 140px;
+        }
+
+        .work-image2 {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+        }
+
+        .work-info h3 {
+            font-size: 12px;
+            color: #333;
+        }
+
+        .work-info p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .contact-section {
+            margin-top: 30px;
+        }
+
+        .contact-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="background">
+        <div class="profile-header">
+            <img src="./assets/blog/wuwei.jpg" alt="Profile" class="profile-image">
+            <div>
+                <h1 class="profile-name">吴伟_Leo</h1>
+                <!--<a href="www.wufazhuce.com" class="profile-url">个人网站</a>-->
+                <p class="profile-description">有理想有道德有纪律没文化。</p>
+            </div>
+        </div>
+        <div class="profile-description1">
+            <img src="./assets/blog/renzheng.png" alt="Social Icon">
+            <p class="profile-description1">诗人、音乐人</p>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">社交媒体</h2>
+        <h2 class="section-title2">SOCIAL MEDIA</h2>
+        <div class="social-media">
+                    <div class="social-media">
+                        <div class="social-icon">
+                            <a href="https://okjk.co/DBPsNj" target="_blank">
+                                <img src="./assets/blog/jike.png" alt="Social 1">
+                            </a>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://y.music.163.com/m/user?id=349689683" target="_blank">
+                                <img src="./assets/blog/netease.png" alt="Social 2">
+                            </a>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://v.douyin.com/iUsUFNRS/" target="_blank">
+                                <img src="./assets/blog/douyin.png" alt="Social 3">
+                            </a>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://github.com/woowai1995" target="_blank">
+                                <img src="./assets/blog/github.png" alt="Social 4">
+                            </a>
+                        </div>
+                    </div>
+        </div>
+        <h2 class="section-title">2024年度总结</h2>
+        <h2 class="section-title2">Summary of 2024</h2>
+        <div class="2024">
+            <a href="./2024/2024.html" target="_blank" style="text-decoration: none;color: none;">
+            <div class="work-item">
+                <img src="./assets/blog/yuntu.png" alt="Work 1" class="work-image">
+                <div class="work-info">
+                    <h3>2024年度动态集锦</h3>
+                    <p>#浴室沉思、#写台词…</p>
+                </div>
+            </div>
+            </a>
+            <a href="https://zsq6u9n0qa.feishu.cn/docx/VrzLdh2c2orppZxfNVKc5rc6nOd?from=from_copylink" target="_blank" style="text-decoration: none;color: none;">
+            <div class="work-item">
+                <img src="./assets/blog/2024.png" alt="Work 2" class="work-image">
+                <div class="work-info">
+                    <h3>2024年度创作</h3>
+                    <p>音乐、诗歌、技术学习</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <h2 class="section-title">作品</h2>
+        <h2 class="section-title2">MY WORKS</h2>
+        <div class="works-grid">
+            <a href="./poetry/poetry.html" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                 <img src="./assets/blog/shiji.jpg" alt="Work 1" class="work-image2">
+                 <div class="work-info">
+                    <h3>这世界只是偶尔温柔</h3>
+                    <p>诗集</p>
+                 </div>
+                </div>
+            </a>
+            <a href="./app/app.html" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                 <img src="./assets/blog/yihua.png" alt="Work 2" class="work-image2">
+                    <div class="work-info">
+                       <h3>一花一世界</h3>
+                       <p>小六壬、寻物诀</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://music.163.com/#/album/191002713/?userid=349689683" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                  <img src="./assets/blog/tiwaihua.jpg" alt="Work 2" class="work-image2">
+                   <div class="work-info">
+                       <h3>题外话</h3>
+                      <p>音乐专辑</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://music.163.com/#/album/169672069/?userid=349689683" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                    <img src="./assets/blog/wenrou.jpg" alt="Work 2" class="work-image2">
+                    <div class="work-info">
+                        <h3>这世界只是偶尔温柔</h3>
+                        <p>音乐专辑</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://music.163.com/#/album/195490192/?userid=349689683" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                    <img src="./assets/blog/ruhuaruhuo.jpg" alt="Work 2" class="work-image2">
+                    <div class="work-info">
+                        <h3>如花如火</h3>
+                        <p>音乐专辑</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://m.okjike.com/originalPosts/64708719fabb994a8babc8ec?s=eyJ1IjoiNWIxYzNiOGNmYWJmODEwMDE3NGQzNjc3IiwiZCI6MX0%3D" target="_blank" style="text-decoration: none;color: none;">
+                <div class="work-item2">
+                  <img src="./assets/blog/hua.jpg" alt="Work 2" class="work-image2">
+                   <div class="work-info">
+                       <h3>edge？</h3>
+                      <p>晒晒我的画</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <h2 class="section-title">联系我</h2>
+        <h2 class="section-title2">CONTACT ME</h2>  
+                <div class="contact-icons">
+                    <img src="./assets/blog/weixin.png" alt="WeChat" class="contact-icon" onclick="copyToClipboard('wechat')">
+                    <img src="./assets/blog/email.png" alt="Email" class="contact-icon" onclick="copyToClipboard('email')">
+                </div>
+            </div>
+        
+            <div id="notification" class="notification" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;"></div>
+        
+            <script>
+                function copyToClipboard(type) {
+                    const content = type === 'wechat' ? 'val9995' : 'val9995@163.com';
+                    const message = type === 'wechat' ? '已复制微信号' : '已复制邮箱地址';
+                    
+                    navigator.clipboard.writeText(content).then(() => {
+                        const notification = document.getElementById('notification');
+                        notification.textContent = message;
+                        notification.style.display = 'block';
+                        setTimeout(() => {
+                            notification.style.display = 'none';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                }
+            </script>
+        </body>
+    </div>
+</body>
+</html>
