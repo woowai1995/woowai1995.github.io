@@ -114,6 +114,20 @@
         .form-group {
             margin-bottom: 20px;
         }
+        
+        .form-note {
+            background-color: #e8f4ff;
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .form-note p {
+            margin: 0;
+            color: #333;
+            font-size: 14px;
+        }
 
         label {
             display: block;
@@ -624,15 +638,11 @@
             <!-- 八字输入区域 -->
             <div class="form-container">
                 <h2>请输入你的出生信息</h2>
+                <div class="form-note">
+                    <p>本系统采用传统农历算法进行八字排盘，确保命理分析的准确性。</p>
+                </div>
                 <form id="bazi-form">
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="calendar-type">历法类型</label>
-                            <select id="calendar-type" name="calendar-type">
-                                <option value="solar">公历</option>
-                                <option value="lunar">农历</option>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="gender">性别</label>
                             <select id="gender" name="gender">
@@ -644,20 +654,12 @@
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="year">年份</label>
-                            <input type="number" id="year" name="year" min="1900" max="2100" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="month">月份</label>
-                            <input type="number" id="month" name="month" min="1" max="12" required>
+                            <label for="birthdate">出生日期（公历）</label>
+                            <input type="date" id="birthdate" name="birthdate" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="day">日期</label>
-                            <input type="number" id="day" name="day" min="1" max="31" required>
-                        </div>
                         <div class="form-group">
                             <label for="hour">时辰</label>
                             <select id="hour" name="hour" required>
@@ -677,18 +679,15 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="location">出生地点（用于时区校正）</label>
-                        <input type="text" id="location" name="location" placeholder="例如：北京市">
+                    <!-- 农历日期显示 -->
+                    <div class="lunar-date-display" id="lunar-date-display" style="display:none;">
+                        <h3>转换后的农历日期</h3>
+                        <p id="lunar-date-text"></p>
                     </div>
                     
                     <div class="form-group">
-                        <label for="analysis-type">分析类型</label>
-                        <select id="analysis-type" name="analysis-type">
-                            <option value="basic">基础分析</option>
-                            <option value="advanced" selected>深度分析</option>
-                            <option value="comprehensive">全面分析</option>
-                        </select>
+                        <label for="location">出生地点（用于时区校正）</label>
+                        <input type="text" id="location" name="location" placeholder="例如：北京市">
                     </div>
                     
                     <div class="form-group">
@@ -700,6 +699,12 @@
             
             <!-- 加载动画 -->
             <div class="loader" id="loader"></div>
+            
+            <!-- 农历日期显示 -->
+            <div class="lunar-date-display" id="lunar-date-display" style="display:none;">
+                <h3>转换后的农历日期</h3>
+                <p id="lunar-date-text"></p>
+            </div>
             
             <!-- 八字排盘结果 -->
             <div class="bazi-result" id="bazi-result">
@@ -1129,6 +1134,7 @@
         </div>
     </footer>
 
+    <script src="../mixin/lunar.js"></script>
     <script>
         // 天干地支数组
         const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
@@ -2663,6 +2669,99 @@
             return analysisText;
         }
         
+        // 出生日期选择事件（实时转换农历日期）
+        document.getElementById('birthdate').addEventListener('change', function() {
+            const birthdate = this.value;
+            if (birthdate) {
+                const dateObj = new Date(birthdate);
+                // 检查是否已经选择了时辰
+                const hourSelect = document.getElementById('hour');
+                if (hourSelect && hourSelect.value !== '') {
+                    // 如果已选择时辰，则显示包含时辰的农历日期
+                    const hourIndex = parseInt(hourSelect.value);
+                    // 根据用户选择的时辰索引计算具体的小时数
+                    let hour, minute;
+                    switch(hourIndex) {
+                        case 0: // 子时
+                            hour = 23; // 取子时中间时刻
+                            minute = 0;
+                            break;
+                        case 1: // 丑时
+                            hour = 2;
+                            minute = 0;
+                            break;
+                        case 2: // 寅时
+                            hour = 4;
+                            minute = 0;
+                            break;
+                        case 3: // 卯时
+                            hour = 6;
+                            minute = 0;
+                            break;
+                        case 4: // 辰时
+                            hour = 8;
+                            minute = 0;
+                            break;
+                        case 5: // 巳时
+                            hour = 10;
+                            minute = 0;
+                            break;
+                        case 6: // 午时
+                            hour = 12;
+                            minute = 0;
+                            break;
+                        case 7: // 未时
+                            hour = 14;
+                            minute = 0;
+                            break;
+                        case 8: // 申时
+                            hour = 16;
+                            minute = 0;
+                            break;
+                        case 9: // 酉时
+                            hour = 18;
+                            minute = 0;
+                            break;
+                        case 10: // 戌时
+                            hour = 20;
+                            minute = 0;
+                            break;
+                        case 11: // 亥时
+                            hour = 22;
+                            minute = 0;
+                            break;
+                        default:
+                            hour = 12;
+                            minute = 0;
+                    }
+                    
+                    // 设置具体的出生时间
+                    dateObj.setHours(hour, minute, 0, 0);
+                    const lunarDate = Lunar.fromDate(dateObj);
+                    const lunarDateString = `${lunarDate.getYearInChinese()}年 ${lunarDate.getMonthInChinese()}月 ${lunarDate.getDayInChinese()}日 ${lunarDate.getTimeZhi()}时 (${lunarDate.getYearGanExact()}${lunarDate.getYearZhiExact()}年 ${lunarDate.getMonthGanExact()}${lunarDate.getMonthZhiExact()}月 ${lunarDate.getDayGanExact()}${lunarDate.getDayZhiExact()}日 ${lunarDate.getTimeGan()}${lunarDate.getTimeZhi()}时)`;
+                    document.getElementById('lunar-date-text').textContent = lunarDateString;
+                } else {
+                    // 如果未选择时辰，则只显示年月日
+                    const lunarDate = Lunar.fromDate(dateObj);
+                    const lunarDateString = `${lunarDate.getYearInChinese()}年 ${lunarDate.getMonthInChinese()}月 ${lunarDate.getDayInChinese()}日`;
+                    document.getElementById('lunar-date-text').textContent = lunarDateString;
+                }
+                document.getElementById('lunar-date-display').style.display = 'block';
+            } else {
+                document.getElementById('lunar-date-display').style.display = 'none';
+            }
+        });
+        
+        // 时辰选择事件（更新农历日期显示）
+        document.getElementById('hour').addEventListener('change', function() {
+            // 触发出生日期的change事件以更新农历日期显示
+            const birthdateInput = document.getElementById('birthdate');
+            if (birthdateInput.value) {
+                // 手动触发change事件
+                birthdateInput.dispatchEvent(new Event('change'));
+            }
+        });
+        
         // 表单提交事件
         document.getElementById('bazi-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2671,28 +2770,113 @@
             document.getElementById('loader').style.display = 'block';
             
             // 获取表单数据
-            const year = parseInt(document.getElementById('year').value);
-            const month = parseInt(document.getElementById('month').value);
-            const day = parseInt(document.getElementById('day').value);
-            const hour = parseInt(document.getElementById('hour').value);
-            const calendarType = document.getElementById('calendar-type').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const dateObj = new Date(birthdate);
+            const year = dateObj.getFullYear();
+            const month = dateObj.getMonth() + 1; // 月份从0开始，需要加1
+            const day = dateObj.getDate();
+            const hourIndex = parseInt(document.getElementById('hour').value);
             const gender = document.getElementById('gender').value;
-            const analysisType = document.getElementById('analysis-type').value;
+            
+            // 根据用户选择的时辰索引计算具体的小时数
+            // 时辰对应关系：0-子时(23:00-01:00), 1-丑时(01:00-03:00), ..., 11-亥时(21:00-23:00)
+            let hour, minute;
+            switch(hourIndex) {
+                case 0: // 子时
+                    hour = 23; // 取子时中间时刻
+                    minute = 0;
+                    break;
+                case 1: // 丑时
+                    hour = 2;
+                    minute = 0;
+                    break;
+                case 2: // 寅时
+                    hour = 4;
+                    minute = 0;
+                    break;
+                case 3: // 卯时
+                    hour = 6;
+                    minute = 0;
+                    break;
+                case 4: // 辰时
+                    hour = 8;
+                    minute = 0;
+                    break;
+                case 5: // 巳时
+                    hour = 10;
+                    minute = 0;
+                    break;
+                case 6: // 午时
+                    hour = 12;
+                    minute = 0;
+                    break;
+                case 7: // 未时
+                    hour = 14;
+                    minute = 0;
+                    break;
+                case 8: // 申时
+                    hour = 16;
+                    minute = 0;
+                    break;
+                case 9: // 酉时
+                    hour = 18;
+                    minute = 0;
+                    break;
+                case 10: // 戌时
+                    hour = 20;
+                    minute = 0;
+                    break;
+                case 11: // 亥时
+                    hour = 22;
+                    minute = 0;
+                    break;
+                default:
+                    hour = 12;
+                    minute = 0;
+            }
+            
+            // 设置具体的出生时间
+            dateObj.setHours(hour, minute, 0, 0);
+            
+            // 使用农历库进行转换和计算
+            // 注意：这里我们使用完整的日期时间来创建农历对象，以确保时辰计算准确
+            const lunarDate = Lunar.fromDate(dateObj);
+            
+            // 显示转换后的农历日期
+            const lunarDateString = `${lunarDate.getYearInChinese()}年 ${lunarDate.getMonthInChinese()}月 ${lunarDate.getDayInChinese()}日 ${lunarDate.getTimeZhi()}时 (${lunarDate.getYearGanExact()}${lunarDate.getYearZhiExact()}年 ${lunarDate.getMonthGanExact()}${lunarDate.getMonthZhiExact()}月 ${lunarDate.getDayGanExact()}${lunarDate.getDayZhiExact()}日 ${lunarDate.getTimeGan()}${lunarDate.getTimeZhi()}时)`;
+            document.getElementById('lunar-date-text').textContent = lunarDateString;
+            document.getElementById('lunar-date-display').style.display = 'block';
             
             // 模拟计算延迟
             setTimeout(() => {
-                // 计算八字
-                const yearColumn = getYearColumn(year);
-                const monthColumn = getMonthColumn(year, month, day);
-                const dayColumn = getDayColumn(year, month, day);
-                const hourColumn = getHourColumn(dayColumn.gan, hour);
-                
-                const bazi = {
-                    year: yearColumn,
-                    month: monthColumn,
-                    day: dayColumn,
-                    hour: hourColumn
+                // 计算八字（使用农历库提供的准确算法）
+                // 年柱使用立春交接时刻为准的精确干支
+                const yearColumn = {
+                    gan: lunarDate.getYearGanExact(),
+                    zhi: lunarDate.getYearZhiExact()
                 };
+                // 月柱使用节气交接时刻为准的精确干支
+                const monthColumn = {
+                    gan: lunarDate.getMonthGanExact(),
+                    zhi: lunarDate.getMonthZhiExact()
+                };
+                // 日柱使用精确的干支计算
+                const dayColumn = {
+                    gan: lunarDate.getDayGanExact(),
+                    zhi: lunarDate.getDayZhiExact()
+                };
+                // 时柱使用精确的干支计算
+                const hourColumn = {
+                    gan: lunarDate.getTimeGan(),
+                    zhi: lunarDate.getTimeZhi()
+                };
+            
+            const bazi = {
+                year: yearColumn,
+                month: monthColumn,
+                day: dayColumn,
+                hour: hourColumn
+            };
                 
                 // 更新八字显示
                 document.getElementById('year-gan').textContent = bazi.year.gan;
