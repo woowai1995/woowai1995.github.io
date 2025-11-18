@@ -638,9 +638,6 @@
             <!-- 八字输入区域 -->
             <div class="form-container">
                 <h2>请输入你的出生信息</h2>
-                <div class="form-note">
-                    <p>本系统采用传统农历算法进行八字排盘，确保命理分析的准确性。</p>
-                </div>
                 <form id="bazi-form">
                     <div class="form-row">
                         <div class="form-group">
@@ -1078,6 +1075,11 @@
                     </div>
                     
                     <div class="card">
+                        <div class="card-title">用神忌神分析</div>
+                        <p id="yongshen-analysis">用神是你命局中对你有利的五行，宜多接触相关事物；忌神是你命局中对你不利的五行，宜少接触或通过用神来化解。</p>
+                    </div>
+                    
+                    <div class="card">
                         <div class="card-title">命理组合分析</div>
                         <p id="mingli-combination">你的命局中木火较旺，金水较弱，形成了一种"木火通明"的组合。这种组合的人通常聪明有才华，有较强的创造力和领导能力，但也可能有些急躁和冲动。木火通明的人适合从事与创意、教育、艺术等相关的工作，在这些领域有较大的发展潜力。但需要注意的是，木火过旺可能会消耗金水，导致健康和财务方面的问题。建议你在发挥自己优势的同时，注意平衡五行，特别是增强金水元素，以保持身心的健康和平衡。</p>
                     </div>
@@ -1104,6 +1106,13 @@
                             <li>办公环境：办公桌朝向北方或西方，有利于事业发展和财运；在办公桌上摆放金属物品，如铜制笔筒、金属摆件等。</li>
                             <li>财位布局：家中的财位在西北方，可在此处摆放金属物品或水景，以增强财运；避免在此处放置红色物品或过多植物。</li>
                         </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-title">个性化风水建议（基于用神忌神）</div>
+                        <div id="fengshui-advice">
+                            <p>根据您的八字用神忌神分析，系统将为您提供个性化的风水布局建议。</p>
+                        </div>
                     </div>
                     
                     <div class="card">
@@ -1857,8 +1866,11 @@
             const currentYear = new Date().getFullYear();
             const currentDayun = dayunData.find(dayun => currentYear >= dayun.start && currentYear <= dayun.end) || dayunData[0];
             
+            // 获取长生十二神阶段
+            const changShengStage = getChangShengStage(bazi.day.gan, currentDayun.zhi);
+            
             // 生成当前大运分析
-            const currentDayunAnalysis = `你当前的大运为${currentDayun.name}（${currentDayun.start}-${currentDayun.end}年），${currentDayun.gan}土代表${getElementCharacter(wuxing[currentDayun.gan])}，${currentDayun.zhi}土代表${getElementCharacter(wuxing[currentDayun.zhi])}。这十年是你${getDayunStage(currentDayun.start, year)}的关键期，${currentDayun.gan}土生金，对你的命局有${getDayunEffect(currentDayun.gan, bazi)}，有利于${getDayunBenefit(currentDayun.gan)}。但${currentDayun.zhi}土与你的日柱${bazi.day.gan}${bazi.day.zhi}${getDayunRelation(currentDayun.zhi, bazi.day.zhi)}，可能会${getDayunChallenge(currentDayun.zhi)}。建议你在这十年${getDayunAdvice(currentDayun.gan, currentDayun.zhi)}，为未来的发展打下基础。`;
+            const currentDayunAnalysis = `你当前的大运为${currentDayun.name}（${currentDayun.start}-${currentDayun.end}年），${currentDayun.gan}土代表${getElementCharacter(wuxing[currentDayun.gan])}，${currentDayun.zhi}土代表${getElementCharacter(wuxing[currentDayun.zhi])}，处于${changShengStage}阶段。这十年是你${getDayunStage(currentDayun.start, year)}的关键期，${currentDayun.gan}土生金，对你的命局有${getDayunEffect(currentDayun.gan, bazi)}，有利于${getDayunBenefit(currentDayun.gan)}。但${currentDayun.zhi}土与你的日柱${bazi.day.gan}${bazi.day.zhi}${getDayunRelation(currentDayun.zhi, bazi.day.zhi)}，可能会${getDayunChallenge(currentDayun.zhi)}。建议你在这十年${getDayunAdvice(currentDayun.gan, currentDayun.zhi)}，为未来的发展打下基础。`;
             
             // 生成流年预测
             const liunianForecast = `${currentYear + 1}年${getLiunianGanZhi(currentYear + 1)}年，${getLiunianGan(currentYear + 1)}与你的日干${bazi.day.gan}${getLiunianRelation(getLiunianGan(currentYear + 1), bazi.day.gan)}，${getLiunianZhi(currentYear + 1)}与你的日支${bazi.day.zhi}${getLiunianRelation(getLiunianZhi(currentYear + 1), bazi.day.zhi)}，整体运势${getLiunianOverall(currentYear + 1, bazi)}。事业上${getLiunianCareer(currentYear + 1, bazi)}，财运${getLiunianFortune(currentYear + 1, bazi)}。但${getLiunianWarning(currentYear + 1, bazi)}。建议你${getLiunianAdvice(currentYear + 1, bazi)}，保持身心健康。`;
@@ -2614,6 +2626,111 @@
             }
         }
         
+        // 计算用神忌神
+        function calculateYongShenJiShen(bazi, wuxingDistribution, wuxingStrength) {
+            // 获取日主（日干）
+            const riZhu = bazi.day.gan;
+            const riZhuWuxing = wuxing[riZhu];
+            
+            // 初始化用神和忌神
+            let yongShen = [];
+            let jiShen = [];
+            
+            // 根据日主强弱判断用神忌神
+            // 首先判断日主的旺衰状态
+            const riZhuStrength = wuxingStrength[riZhuWuxing];
+            
+            // 如果日主偏旺，则需要克制日主的五行为用神，生助日主的五行为忌神
+            // 如果日主偏弱，则需要生助日主的五行为用神，克制日主的五行为忌神
+            if (riZhuStrength === '偏旺') {
+                // 日主偏旺，需要克制
+                if (riZhuWuxing === '木') {
+                    yongShen = ['金', '土'];  // 金克木，土耗木
+                    jiShen = ['水', '木'];    // 水生木，木帮木
+                } else if (riZhuWuxing === '火') {
+                    yongShen = ['水', '金'];  // 水克火，金耗火
+                    jiShen = ['木', '火'];    // 木生火，火帮火
+                } else if (riZhuWuxing === '土') {
+                    yongShen = ['木', '水'];  // 木克土，水耗土
+                    jiShen = ['火', '土'];    // 火生土，土帮土
+                } else if (riZhuWuxing === '金') {
+                    yongShen = ['火', '木'];  // 火克金，木耗金
+                    jiShen = ['土', '金'];    // 土生金，金帮金
+                } else if (riZhuWuxing === '水') {
+                    yongShen = ['土', '火'];  // 土克水，火耗水
+                    jiShen = ['金', '水'];    // 金生水，水帮水
+                }
+            } else if (riZhuStrength === '偏弱') {
+                // 日主偏弱，需要生助
+                if (riZhuWuxing === '木') {
+                    yongShen = ['水', '木'];  // 水生木，木帮木
+                    jiShen = ['金', '土'];    // 金克木，土耗木
+                } else if (riZhuWuxing === '火') {
+                    yongShen = ['木', '火'];  // 木生火，火帮火
+                    jiShen = ['水', '金'];    // 水克火，金耗火
+                } else if (riZhuWuxing === '土') {
+                    yongShen = ['火', '土'];  // 火生土，土帮土
+                    jiShen = ['木', '水'];    // 木克土，水耗土
+                } else if (riZhuWuxing === '金') {
+                    yongShen = ['土', '金'];  // 土生金，金帮金
+                    jiShen = ['火', '木'];    // 火克金，木耗金
+                } else if (riZhuWuxing === '水') {
+                    yongShen = ['金', '水'];  // 金生水，水帮水
+                    jiShen = ['土', '火'];    // 土克水，火耗水
+                }
+            } else {
+                // 日主平衡，根据具体分布判断
+                // 查看哪种五行数量最多，作为可能的忌神
+                let maxElement = '';
+                let maxCount = 0;
+                Object.keys(wuxingDistribution).forEach(element => {
+                    if (wuxingDistribution[element] > maxCount) {
+                        maxCount = wuxingDistribution[element];
+                        maxElement = element;
+                    }
+                });
+                
+                // 查看哪种五行数量最少，作为可能的用神
+                let minElement = '';
+                let minCount = 10;
+                Object.keys(wuxingDistribution).forEach(element => {
+                    if (wuxingDistribution[element] < minCount) {
+                        minCount = wuxingDistribution[element];
+                        minElement = element;
+                    }
+                });
+                
+                // 设置用神和忌神
+                yongShen = [minElement];
+                jiShen = [maxElement];
+            }
+            
+            return {
+                yongShen: yongShen,
+                jiShen: jiShen
+            };
+        }
+        
+        // 生成用神忌神分析文本
+        function generateYongShenAnalysis(bazi, yongShenJiShen) {
+            const riZhu = bazi.day.gan;
+            const riZhuWuxing = wuxing[riZhu];
+            
+            let analysis = `你的日主为${riZhu}(${riZhuWuxing})，`;
+            
+            if (yongShenJiShen.yongShen.length > 0) {
+                analysis += `用神为${yongShenJiShen.yongShen.join('、')}，`;
+            }
+            
+            if (yongShenJiShen.jiShen.length > 0) {
+                analysis += `忌神为${yongShenJiShen.jiShen.join('、')}。`;
+            }
+            
+            analysis += "用神是你命局中对你有利的五行，宜多接触相关事物；忌神是你命局中对你不利的五行，宜少接触或通过用神来化解。";
+            
+            return analysis;
+        }
+        
         // 生成命理组合分析
         function generateMingliCombinationAnalysis(bazi) {
             // 统计五行分布
@@ -2667,6 +2784,64 @@
             analysisText += '但需要注意的是，木火过旺可能会消耗金水，导致健康和财务方面的问题。建议你在发挥自己优势的同时，注意平衡五行，特别是增强金水元素，以保持身心的健康和平衡。';
             
             return analysisText;
+        }
+        
+        // 生成风水布局建议（根据用神忌神优化）
+        function generateFengshuiAdvice(yongShenJiShen) {
+            const yongShen = yongShenJiShen.yongShen;
+            const jiShen = yongShenJiShen.jiShen;
+            
+            // 定义五行对应的方向和颜色
+            const elementDirections = {
+                '木': { directions: ['东', '东南'], colors: ['绿色'] },
+                '火': { directions: ['南'], colors: ['红色', '紫色'] },
+                '土': { directions: ['中', '西南', '东北'], colors: ['黄色', '棕色'] },
+                '金': { directions: ['西', '西北'], colors: ['白色', '金色'] },
+                '水': { directions: ['北'], colors: ['黑色', '蓝色'] }
+            };
+            
+            // 定义五行对应的物品
+            const elementItems = {
+                '木': ['绿色植物', '木质家具'],
+                '火': ['红色装饰品', '照明设备'],
+                '土': ['陶瓷制品', '石材装饰'],
+                '金': ['金属饰品', '白色物品'],
+                '水': ['鱼缸', '水景装饰']
+            };
+            
+            // 生成建议文本
+            let adviceText = '<ul class="jiehua-list">';
+            
+            // 用神建议
+            if (yongShen.length > 0) {
+                adviceText += '<li><strong>增强用神元素：</strong>';
+                yongShen.forEach(element => {
+                    if (elementDirections[element]) {
+                        adviceText += `在${elementDirections[element].directions.join('、')}方向布置${element}元素，使用${elementDirections[element].colors.join('、')}颜色的装饰；`;
+                        adviceText += `可摆放${elementItems[element].join('、')}等物品；`;
+                    }
+                });
+                adviceText += '</li>';
+            }
+            
+            // 忌神建议
+            if (jiShen.length > 0) {
+                adviceText += '<li><strong>避免或化解忌神元素：</strong>';
+                jiShen.forEach(element => {
+                    if (elementDirections[element]) {
+                        adviceText += `避免在${elementDirections[element].directions.join('、')}方向布置${element}元素，减少使用${elementDirections[element].colors.join('、')}颜色的装饰；`;
+                        adviceText += `减少${elementItems[element].join('、')}等物品的使用；`;
+                    }
+                });
+                adviceText += '</li>';
+            }
+            
+            // 特殊建议
+            adviceText += '<li><strong>整体平衡建议：</strong>保持居住和工作环境的整洁有序，定期清理杂物；根据用神五行选择合适的装饰品和家具；在办公桌或床头放置有助于增强用神的小物件。</li>';
+            
+            adviceText += '</ul>';
+            
+            return adviceText;
         }
         
         // 出生日期选择事件（实时转换农历日期）
@@ -2938,9 +3113,20 @@
                 document.querySelector('.liuqin-item:nth-child(3) p').textContent = liuqinAnalysis.marriage;
                 document.querySelector('.liuqin-item:nth-child(4) p').textContent = liuqinAnalysis.children;
                 
+                // 计算用神忌神
+                const yongShenJiShen = calculateYongShenJiShen(bazi, wuxingDistribution, wuxingStrength);
+                
+                // 生成用神忌神分析文本
+                const yongShenAnalysis = generateYongShenAnalysis(bazi, yongShenJiShen);
+                document.getElementById('yongshen-analysis').textContent = yongShenAnalysis;
+                
                 // 生成命理组合分析
                 const mingliCombination = generateMingliCombinationAnalysis(bazi);
                 document.getElementById('mingli-combination').textContent = mingliCombination;
+                
+                // 生成风水布局建议（根据用神忌神优化）
+                const fengshuiAdvice = generateFengshuiAdvice(yongShenJiShen);
+                document.getElementById('fengshui-advice').innerHTML = fengshuiAdvice;
                 
                 // 隐藏加载动画，显示结果
                 document.getElementById('loader').style.display = 'none';
@@ -3016,6 +3202,41 @@
                 }, 3000);
             }
         });
+        
+        // 获取长生十二神阶段
+        function getChangShengStage(gan, zhi) {
+            // 长生十二神顺序：长生、沐浴、冠带、临官、帝旺、衰、病、死、墓、绝、胎、养
+            const changShengOrder = ['长生', '沐浴', '冠带', '临官', '帝旺', '衰', '病', '死', '墓', '绝', '胎', '养'];
+            
+            // 根据日干确定长生位
+            const changShengPosition = {
+                '甲': 1, '丙': 10, '戊': 10, '庚': 7, '壬': 4,
+                '乙': 6, '丁': 9, '己': 9, '辛': 0, '癸': 3
+            };
+            
+            // 获取天干对应的长生位
+            const startPos = changShengPosition[gan];
+            
+            // 地支索引（子=0，丑=1，寅=2，...，亥=11）
+            const zhiIndex = {
+                '子': 0, '丑': 1, '寅': 2, '卯': 3, '辰': 4, '巳': 5,
+                '午': 6, '未': 7, '申': 8, '酉': 9, '戌': 10, '亥': 11
+            };
+            
+            // 计算阳干和阴干的顺逆
+            const isYang = ['甲', '丙', '戊', '庚', '壬'].includes(gan);
+            let index;
+            
+            if (isYang) {
+                // 阳干顺行
+                index = (startPos + zhiIndex[zhi]) % 12;
+            } else {
+                // 阴干逆行
+                index = (startPos - zhiIndex[zhi] + 12) % 12;
+            }
+            
+            return changShengOrder[index];
+        }
         
         // 重新分析按钮
         document.getElementById('new-analysis').addEventListener('click', function() {
