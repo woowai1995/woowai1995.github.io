@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Outfity - 基于微信小程序的智能虚拟试衣应用，AI形象生成、虚拟试穿、智能衣柜一站式穿搭体验">
     <title>Outfity - 让每一天的穿搭都充满灵感</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,76 +13,303 @@
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <img src="../assets/outfity/Outfity.png" alt="Outfity Logo" onerror="this.src='logo'">
+                    <img src="images/logo.png" alt="Outfity Logo">
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">功能</a></li>
+                        <li><a href="#showcase">界面</a></li>
+                        <li><a href="#download">体验</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
     <section id="home" class="hero">
+        <div class="section-ambient" aria-hidden="true">
+            <div class="ambient-blob ambient-blob-1"></div>
+            <div class="ambient-blob ambient-blob-2"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1>穿搭不重样</h1>
                 <h1>Outfity来帮</h1>
-                <h2>AI驱动的场景化穿搭应用</h2>
-                <p>让每一天的穿搭都充满灵感</p>
+                <h2>基于微信小程序的智能虚拟试衣应用</h2>
+                <p>上传真人照片生成 AI 虚拟形象，一键虚拟试穿，让每一天的穿搭都充满灵感</p>
                 <div class="hero-buttons">
                     <a href="#download" class="btn btn-primary">立即体验</a>
+                    <a href="#showcase" class="btn btn-secondary">查看界面</a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="../assets/outfity/ui.png" alt="Outfity App">
+                <div class="hero-image-glow" aria-hidden="true"></div>
+                <img class="app-screenshot" src="images/Screenshots/2首页.png" alt="Outfity 应用首页">
             </div>
         </div>
     </section>
 
     <section id="features" class="features">
+        <div class="section-ambient" aria-hidden="true">
+            <div class="ambient-blob ambient-blob-1"></div>
+            <div class="ambient-blob ambient-blob-3"></div>
+        </div>
         <div class="container">
             <div class="section-header">
                 <h2>核心功能</h2>
+                <p>基于微信云开发的 AI 虚拟试衣，从形象生成到穿搭管理，一站式解决你的穿搭难题</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>AI 形象生成</h3>
+                    <p>上传个人真人照片，AI 生成高度还原的虚拟形象</p>
+                    <ul class="feature-list">
+                        <li>真实 / 时尚 / 休闲 / 职业多种风格</li>
+                        <li>保存和管理多个 AI 形象</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-tshirt"></i>
                     </div>
-                    <h3>电子衣橱管理</h3>
-                    <p>AI自动识别衣物，轻松录入分类</p>
+                    <h3>虚拟试穿</h3>
+                    <p>上传衣物平铺实拍图，智能生成多角度上身效果</p>
+                    <ul class="feature-list">
+                        <li>正面 / 侧面 / 背面多角度试穿</li>
+                        <li>保存试穿历史，随时回顾</li>
+                    </ul>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-magic"></i>
+                        <i class="fas fa-archive"></i>
                     </div>
-                    <h3>场景化穿搭推荐</h3>
-                    <p>根据不同场合智能推荐穿搭方案</p>
+                    <h3>智能衣柜</h3>
+                    <p>衣物分类管理，本地上传或粘贴电商链接自动抓取</p>
+                    <ul class="feature-list">
+                        <li>上衣 / 下装 / 连衣裙 / 外套等分类</li>
+                        <li>标签、颜色、材质多维度管理</li>
+                    </ul>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>日历穿搭计划</h3>
-                    <p>结合天气预报，提前规划每日穿搭</p>
+                    <h3>试衣镜</h3>
+                    <p>快捷管理 AI 形象与虚拟试穿，查看历史并保存到相册</p>
+                    <ul class="feature-list">
+                        <li>一站式试衣入口</li>
+                        <li>一键保存试穿效果</li>
+                    </ul>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>社区种草分享</h3>
-                    <p>分享自己的穿搭，与他人互动</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="showcase">
+        <div class="section-ambient" aria-hidden="true">
+            <div class="ambient-blob ambient-blob-1"></div>
+            <div class="ambient-blob ambient-blob-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <h2>产品界面</h2>
+                <p>左右滑动浏览，从登录到试衣的完整产品体验</p>
+            </div>
+        </div>
+
+        <div class="showcase-carousel-outer">
+            <button type="button" class="carousel-nav carousel-nav--prev" aria-label="上一张">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="showcase-carousel-viewport">
+                <div class="showcase-carousel-fade showcase-carousel-fade--left"></div>
+                <div class="showcase-carousel-fade showcase-carousel-fade--right"></div>
+                <div class="showcase-carousel-track" id="showcaseTrack">
+                    <figure class="carousel-slide" data-index="0">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/1登录页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/1登录页.png" alt="微信登录" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">基础</span>
+                                <span class="slide-title">微信登录</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="1">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/2首页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/2首页.png" alt="应用首页" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">基础</span>
+                                <span class="slide-title">应用首页</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="2">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/9个人中心页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/9个人中心页.png" alt="个人中心" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">基础</span>
+                                <span class="slide-title">个人中心</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="3">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/3衣柜页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/3衣柜页.png" alt="衣柜管理" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">衣柜</span>
+                                <span class="slide-title">衣柜管理</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="4">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/4添加页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/4添加页.png" alt="添加衣物" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">衣柜</span>
+                                <span class="slide-title">添加衣物</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="5">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/5添加确认页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/5添加确认页.png" alt="添加确认" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">衣柜</span>
+                                <span class="slide-title">添加确认</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="6">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/6ai分析ing.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/6ai分析ing.png" alt="AI 智能识别" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">衣柜</span>
+                                <span class="slide-title">AI 智能识别</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="7">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/7ai分析预填页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/7ai分析预填页.png" alt="信息自动预填" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">衣柜</span>
+                                <span class="slide-title">信息自动预填</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+                    <figure class="carousel-slide" data-index="8">
+                        <div class="carousel-slide-blur" aria-hidden="true">
+                            <img src="images/Screenshots/8ai试衣镜页.png" alt="">
+                        </div>
+                        <div class="carousel-slide-inner">
+                            <div class="screenshot-frame">
+                                <img class="app-screenshot" src="images/Screenshots/8ai试衣镜页.png" alt="虚拟试穿效果" loading="lazy">
+                            </div>
+                            <figcaption>
+                                <span class="slide-tag">AI 试衣</span>
+                                <span class="slide-title">虚拟试穿效果</span>
+                            </figcaption>
+                        </div>
+                    </figure>
+
+                </div>
+            </div>
+            <button type="button" class="carousel-nav carousel-nav--next" aria-label="下一张">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-hint container">
+            <i class="fas fa-arrows-alt-h"></i>
+            <span>左右滑动或点击箭头浏览界面截图</span>
+        </div>
+    </section>
+    <section id="workflow" class="workflow">
+        <div class="section-ambient" aria-hidden="true">
+            <div class="ambient-blob ambient-blob-2"></div>
+            <div class="ambient-blob ambient-blob-3"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <h2>使用流程</h2>
+                <p>三步开启你的 AI 虚拟试衣之旅</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <h3>创建 AI 形象</h3>
+                    <p>上传真人照片，选择风格，生成专属虚拟形象</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <h3>管理智能衣柜</h3>
+                    <p>添加衣物，AI 自动识别分类并预填信息</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <h3>虚拟试穿</h3>
+                    <p>在试衣镜中选择形象与衣物，查看多角度上身效果</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="download" class="download">
+        <div class="section-ambient" aria-hidden="true">
+            <div class="ambient-blob ambient-blob-1"></div>
+            <div class="ambient-blob ambient-blob-2"></div>
+        </div>
         <div class="container">
             <div class="section-header">
                 <h2>立即体验</h2>
-                <p>暂未上线，敬请期待</p>
+                <p>微信扫码进入 Outfity 小程序</p>
             </div>
             <div class="download-content">
                 <div class="qr-code">
-                    <img src="images/qr-code.svg" alt="敬请期待">
+                    <img src="images/小程序码.png" alt="Outfity 微信小程序码">
                 </div>
                 <div class="download-steps">
                     <div class="step">
@@ -94,7 +322,7 @@
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
-                        <div class="step-text">开始使用Outfity</div>
+                        <div class="step-text">开始使用 Outfity</div>
                     </div>
                 </div>
             </div>
@@ -104,7 +332,7 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2025 Outfity. 保留所有权利。</p>
+                <p>&copy; 2026 Outfity. 保留所有权利。</p>
             </div>
         </div>
     </footer>
